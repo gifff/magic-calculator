@@ -18,7 +18,20 @@ Please write a program that handles the following use-cases:
 
 - [ ] Find the first N Fibonacci sequence, and print the result
   - Input: 4
-  - Output : 0, 1, 1, 2 
+  - Output : 0, 1, 1, 2
+
+### Assumption
+
+1. For case of Sum and Multiply, input values are integer and may be negative
+   number ranging from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+   (inclusive) (int64 range).
+2. For Find first N prime number and Find the first N Fibonacci sequence cases,
+   N must be integer that is larger than or equal to 0. It will output empty
+   when N is 0, and panic if negative.
+3. The result is not guaranteed to always be correct due to int64 limitation to
+   hold the result. It might be overflow or underflow.
+   For example, the limitation for N in Fibonacci case is 93, because on the
+   94th case, the result is overflowed.
 
 ## System Requirements
 
