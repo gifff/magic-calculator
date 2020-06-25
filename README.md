@@ -4,19 +4,19 @@
 
 Please write a program that handles the following use-cases:
 
-- [ ] Sum X & Y, and print the result
+- [x] Sum X & Y, and print the result
   - Input : 1, 2
   - Output : 3
 
-- [ ] Multiply X & Y, and print the result
+- [x] Multiply X & Y, and print the result
   - Input : 1, 2
   - Output: 2
 
-- [ ] Find first N prime number, and print the result
+- [x] Find first N prime number, and print the result
   - Input: 4
   - Output : 2, 3, 5, 7
 
-- [ ] Find the first N Fibonacci sequence, and print the result
+- [x] Find the first N Fibonacci sequence, and print the result
   - Input: 4
   - Output : 0, 1, 1, 2
 
@@ -65,3 +65,16 @@ Result: 7
 $ ./magic-calculator sum -2 -3
 Result: -5
 ```
+
+### Available commands
+
+- `sum <arg1> <arg2>`
+  > Sum <arg1> with <arg2>
+- `multiply <arg1> <arg2>`
+  > Multiply <arg1> with <arg2>
+- `nfib <N>`
+  > Print the first N Fibonacci numbers
+- `nprime <N>`
+  > Print the first N prime numbers
+- `help`
+  > Print usage and available commands
