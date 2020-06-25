@@ -13,5 +13,8 @@ type FirstPrimeEvaluator struct {
 
 func (e *FirstPrimeEvaluator) Evaluate() {
 	e.Result = SequenceResult{}
-	fmt.Fprintf(e.ResultWriter, "Result: \n")
+	if e.N == 1 {
+		e.Result = append(e.Result, 2)
+	}
+	fmt.Fprintf(e.ResultWriter, "Result: %s\n", FormatSequenceResult(e.Result))
 }
