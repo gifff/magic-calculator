@@ -22,9 +22,10 @@ func main() {
 	args = args[1:]
 
 	requiredArgs := 0
-	if cmd == "sum" {
+	switch cmd {
+	case "sum", "multiply":
 		requiredArgs = 2
-	} else {
+	default:
 		printUsage()
 		return
 	}
@@ -44,12 +45,21 @@ func main() {
 		input = append(input, v)
 	}
 
-	if cmd == "sum" {
-		evaluator := &SumEvaluator{
+	var evaluator Evaluator
+	switch cmd {
+	case "sum":
+		evaluator = &SumEvaluator{
 			X:            input[0],
 			Y:            input[1],
 			ResultWriter: os.Stdout,
 		}
-		evaluator.Evaluate()
+	case "multiply":
+		evaluator = &MultiplyEvaluator{
+			X:            input[0],
+			Y:            input[1],
+			ResultWriter: os.Stdout,
+		}
 	}
+
+	evaluator.Evaluate()
 }
