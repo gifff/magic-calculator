@@ -1,17 +1,41 @@
 package main
 
 import (
-	"flag"
+	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 )
 
-func main() {
-	cmd := flag.String("c", "", "Use specific command. Available commands are: sum")
-	flag.Parse()
+func printUsage() {
+	executableName := os.Args[0]
+	fmt.Printf("For usage information: %s help\n", filepath.Base(executableName))
+}
 
-	input := make([]int64, 0, flag.NArg())
-	for _, arg := range flag.Args() {
+func main() {
+	args := os.Args[1:]
+	if len(args) < 3 {
+		printUsage()
+		return
+	}
+	cmd := args[0]
+	args = args[1:]
+
+	requiredArgs := 0
+	if cmd == "sum" {
+		requiredArgs = 2
+	} else {
+		printUsage()
+		return
+	}
+
+	if len(args) < requiredArgs {
+		printUsage()
+		return
+	}
+
+	input := make([]int64, 0, len(args))
+	for _, arg := range args {
 		v, err := strconv.ParseInt(arg, 10, 64)
 		if err != nil {
 			panic(err)
@@ -20,7 +44,7 @@ func main() {
 		input = append(input, v)
 	}
 
-	if *cmd == "sum" {
+	if cmd == "sum" {
 		evaluator := &SumEvaluator{
 			X:            input[0],
 			Y:            input[1],

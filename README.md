@@ -54,11 +54,14 @@ $ go build
 Then, execute the compiled binary. For Linux/Unix, the command is:
 
 ```shell
-$ ./magic-calculator -c <command> <arg1> <arg2>
+$ ./magic-calculator <command> <arg1> <arg2>
 ```
 
 Example:
 
 ```shell
-$ ./magic-calculator -c sum 3 4
+$ ./magic-calculator sum 3 4
+Result: 7
+$ ./magic-calculator sum -2 -3
+Result: -5
 ```
