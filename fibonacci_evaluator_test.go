@@ -32,6 +32,12 @@ func TestFibonacciEvaluator(t *testing.T) {
 			expectedResult:        SequenceResult{0, 1},
 			expectedWrittenResult: "Result: 0, 1\n",
 		},
+		{
+			name:                  "n=5 result should be '0, 1, 1, 2, 3'",
+			n:                     5,
+			expectedResult:        SequenceResult{0, 1, 1, 2, 3},
+			expectedWrittenResult: "Result: 0, 1, 1, 2, 3\n",
+		},
 	}
 
 	for _, tc := range testCases {

@@ -20,5 +20,9 @@ func (e *FirstFibonacciEvaluator) Evaluate() {
 		e.Result = append(e.Result, 1)
 	}
 
+	for i := int64(2); i < e.N; i++ {
+		e.Result = append(e.Result, e.Result[i-1]+e.Result[i-2])
+	}
+
 	fmt.Fprintf(e.ResultWriter, "Result: %v\n", FormatSequenceResult(e.Result))
 }
