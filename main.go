@@ -25,12 +25,12 @@ func main() {
 
 	input, err := parseInput(cmd, args)
 	if err != nil {
-		panic(err)
+		printError(err)
 	}
 
 	evaluator := selectEvaluator(cmd, input, os.Stdout)
 	err = evaluator.Evaluate()
 	if err != nil {
-		panic(err)
+		printError(err)
 	}
 }
