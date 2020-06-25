@@ -52,4 +52,14 @@ func TestFibonacciEvaluator(t *testing.T) {
 			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})
 	}
+
+	t.Run("n=-3 should be panic", func(t *testing.T) {
+		sb := &strings.Builder{}
+		e := &FirstFibonacciEvaluator{N: -3, ResultWriter: sb}
+		var evaluator Evaluator = e
+
+		assert.PanicsWithError(t, ErrInvalidInput.Error(), func() {
+			evaluator.Evaluate()
+		})
+	})
 }

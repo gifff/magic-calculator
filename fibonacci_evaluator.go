@@ -1,9 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 )
+
+var ErrInvalidInput = errors.New("invalid input")
 
 type FirstFibonacciEvaluator struct {
 	Result       SequenceResult
@@ -13,6 +16,11 @@ type FirstFibonacciEvaluator struct {
 
 func (e *FirstFibonacciEvaluator) Evaluate() {
 	e.Result = []int64{}
+
+	if e.N < 0 {
+		panic(ErrInvalidInput)
+	}
+
 	if e.N >= 1 {
 		e.Result = append(e.Result, 0)
 	}
