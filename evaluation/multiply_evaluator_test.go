@@ -1,4 +1,4 @@
-package main
+package evaluation
 
 import (
 	"strings"
@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSumEvaluator(t *testing.T) {
+func TestMultiplyEvaluator(t *testing.T) {
 
 	testCases := []struct {
 		name                  string
@@ -23,29 +23,29 @@ func TestSumEvaluator(t *testing.T) {
 			expectedWrittenResult: "Result: 0\n",
 		},
 		{
-			name:                  "x=2 and y=0 result should be 2",
-			x:                     2,
-			y:                     0,
-			expectedResult:        SingleResult(2),
-			expectedWrittenResult: "Result: 2\n",
+			name:                  "x=1 and y=1 result should be 1",
+			x:                     1,
+			y:                     1,
+			expectedResult:        SingleResult(1),
+			expectedWrittenResult: "Result: 1\n",
 		},
 		{
-			name:                  "x=2 and y=3 result should be 5",
-			x:                     2,
-			y:                     3,
-			expectedResult:        SingleResult(5),
-			expectedWrittenResult: "Result: 5\n",
+			name:                  "x=1 and y=-5 result should be -5",
+			x:                     1,
+			y:                     -5,
+			expectedResult:        SingleResult(-5),
+			expectedWrittenResult: "Result: -5\n",
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			sb := &strings.Builder{}
-			se := &SumEvaluator{X: tc.x, Y: tc.y, ResultWriter: sb}
-			var evaluator Evaluator = se
+			me := &MultiplyEvaluator{X: tc.x, Y: tc.y, ResultWriter: sb}
+			var evaluator Evaluator = me
 			evaluator.Evaluate()
 
-			assert.Equal(t, tc.expectedResult, se.Result)
+			assert.Equal(t, tc.expectedResult, me.Result)
 			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})
 	}

@@ -5,6 +5,8 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+
+	"github.com/gifff/magic-calculator/evaluation"
 )
 
 func main() {
@@ -45,22 +47,22 @@ func main() {
 		input = append(input, v)
 	}
 
-	var evaluator Evaluator
+	var evaluator evaluation.Evaluator
 	switch cmd {
 	case "sum":
-		evaluator = &SumEvaluator{
+		evaluator = &evaluation.SumEvaluator{
 			X:            input[0],
 			Y:            input[1],
 			ResultWriter: os.Stdout,
 		}
 	case "multiply":
-		evaluator = &MultiplyEvaluator{
+		evaluator = &evaluation.MultiplyEvaluator{
 			X:            input[0],
 			Y:            input[1],
 			ResultWriter: os.Stdout,
 		}
 	case "nfib":
-		evaluator = &FirstFibonacciEvaluator{
+		evaluator = &evaluation.FirstFibonacciEvaluator{
 			N:            input[0],
 			ResultWriter: os.Stdout,
 		}

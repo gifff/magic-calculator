@@ -1,4 +1,4 @@
-package main
+package evaluation
 
 type Evaluator interface {
 	Evaluate()
