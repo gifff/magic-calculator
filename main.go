@@ -20,6 +20,8 @@ func main() {
 	switch cmd {
 	case "sum", "multiply":
 		requiredArgs = 2
+	case "nfib":
+		requiredArgs = 1
 	case "help":
 		printHelp()
 		return
@@ -57,6 +59,11 @@ func main() {
 			Y:            input[1],
 			ResultWriter: os.Stdout,
 		}
+	case "nfib":
+		evaluator = &FirstFibonacciEvaluator{
+			N:            input[0],
+			ResultWriter: os.Stdout,
+		}
 	}
 
 	evaluator.Evaluate()
@@ -73,4 +80,5 @@ func printHelp() {
 	fmt.Printf("Available commands:\n")
 	fmt.Printf("\tsum\t\tSum of <arg1> and <arg2>\n")
 	fmt.Printf("\tmultiply\tMultiply <arg1> and <arg2>\n")
+	fmt.Printf("\tnfib\t\tPrint the first N Fibonacci number\n")
 }
