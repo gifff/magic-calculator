@@ -12,6 +12,10 @@ type FirstPrimeEvaluator struct {
 }
 
 func (e *FirstPrimeEvaluator) Evaluate() {
+	if e.N < 0 {
+		panic(ErrInvalidInput)
+	}
+
 	e.Result = SequenceResult{}
 	for v := int64(2); len(e.Result) < int(e.N); v++ {
 		if e.isPrime(v) {

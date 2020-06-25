@@ -1,12 +1,9 @@
 package evaluation
 
 import (
-	"errors"
 	"fmt"
 	"io"
 )
-
-var ErrInvalidInput = errors.New("invalid input")
 
 type FirstFibonacciEvaluator struct {
 	Result       SequenceResult

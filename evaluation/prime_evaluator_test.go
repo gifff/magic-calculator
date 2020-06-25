@@ -46,4 +46,14 @@ func TestFirstPrimeEvaluator(t *testing.T) {
 			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})
 	}
+
+	t.Run("n=-1 should be panic", func(t *testing.T) {
+		sb := &strings.Builder{}
+		e := &FirstPrimeEvaluator{N: -1, ResultWriter: sb}
+		var evaluator Evaluator = e
+
+		assert.PanicsWithError(t, ErrInvalidInput.Error(), func() {
+			evaluator.Evaluate()
+		})
+	})
 }
