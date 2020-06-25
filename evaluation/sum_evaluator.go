@@ -11,7 +11,8 @@ type SumEvaluator struct {
 	ResultWriter io.Writer
 }
 
-func (e *SumEvaluator) Evaluate() {
+func (e *SumEvaluator) Evaluate() error {
 	e.Result = SingleResult(e.X + e.Y)
 	fmt.Fprintf(e.ResultWriter, "Result: %d\n", e.Result)
+	return nil
 }

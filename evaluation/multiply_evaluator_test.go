@@ -43,8 +43,9 @@ func TestMultiplyEvaluator(t *testing.T) {
 			sb := &strings.Builder{}
 			me := &MultiplyEvaluator{X: tc.x, Y: tc.y, ResultWriter: sb}
 			var evaluator Evaluator = me
-			evaluator.Evaluate()
+			err := evaluator.Evaluate()
 
+			assert.Nil(t, err)
 			assert.Equal(t, tc.expectedResult, me.Result)
 			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})

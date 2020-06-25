@@ -43,8 +43,9 @@ func TestSumEvaluator(t *testing.T) {
 			sb := &strings.Builder{}
 			se := &SumEvaluator{X: tc.x, Y: tc.y, ResultWriter: sb}
 			var evaluator Evaluator = se
-			evaluator.Evaluate()
+			err := evaluator.Evaluate()
 
+			assert.Nil(t, err)
 			assert.Equal(t, tc.expectedResult, se.Result)
 			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})

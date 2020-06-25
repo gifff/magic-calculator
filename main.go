@@ -29,5 +29,8 @@ func main() {
 	}
 
 	evaluator := selectEvaluator(cmd, input, os.Stdout)
-	evaluator.Evaluate()
+	err = evaluator.Evaluate()
+	if err != nil {
+		panic(err)
+	}
 }

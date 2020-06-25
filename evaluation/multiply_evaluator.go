@@ -11,7 +11,8 @@ type MultiplyEvaluator struct {
 	ResultWriter io.Writer
 }
 
-func (e *MultiplyEvaluator) Evaluate() {
+func (e *MultiplyEvaluator) Evaluate() error {
 	e.Result = SingleResult(e.X * e.Y)
 	fmt.Fprintf(e.ResultWriter, "Result: %d\n", e.Result)
+	return nil
 }

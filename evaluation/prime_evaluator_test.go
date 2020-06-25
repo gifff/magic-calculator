@@ -13,24 +13,35 @@ func TestFirstPrimeEvaluator(t *testing.T) {
 		n                     int64
 		expectedResult        SequenceResult
 		expectedWrittenResult string
+		expectedError         error
 	}{
 		{
 			name:                  "n=0 result should be empty",
 			n:                     0,
 			expectedResult:        SequenceResult{},
 			expectedWrittenResult: "Result: \n",
+			expectedError:         nil,
 		},
 		{
 			name:                  "n=1 result should be '2'",
 			n:                     1,
 			expectedResult:        SequenceResult{2},
 			expectedWrittenResult: "Result: 2\n",
+			expectedError:         nil,
 		},
 		{
 			name:                  "n=10 result should be '2, 3, 5, 7, 11, 13, 17, 19, 23, 29'",
 			n:                     10,
 			expectedResult:        SequenceResult{2, 3, 5, 7, 11, 13, 17, 19, 23, 29},
 			expectedWrittenResult: "Result: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29\n",
+			expectedError:         nil,
+		},
+		{
+			name:                  "n=-1 should return error",
+			n:                     -1,
+			expectedResult:        SequenceResult{},
+			expectedWrittenResult: "",
+			expectedError:         ErrInvalidInput,
 		},
 	}
 
@@ -39,21 +50,12 @@ func TestFirstPrimeEvaluator(t *testing.T) {
 			sb := &strings.Builder{}
 			e := &FirstPrimeEvaluator{N: tc.n, ResultWriter: sb}
 			var evaluator Evaluator = e
-			evaluator.Evaluate()
+			err := evaluator.Evaluate()
 
+			assert.Equal(t, tc.expectedError, err)
 			assert.NotNil(t, e.Result)
 			assert.ElementsMatch(t, tc.expectedResult, e.Result)
 			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})
 	}
-
-	t.Run("n=-1 should be panic", func(t *testing.T) {
-		sb := &strings.Builder{}
-		e := &FirstPrimeEvaluator{N: -1, ResultWriter: sb}
-		var evaluator Evaluator = e
-
-		assert.PanicsWithError(t, ErrInvalidInput.Error(), func() {
-			evaluator.Evaluate()
-		})
-	})
 }

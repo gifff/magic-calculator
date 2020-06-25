@@ -11,12 +11,13 @@ type FirstPrimeEvaluator struct {
 	ResultWriter io.Writer
 }
 
-func (e *FirstPrimeEvaluator) Evaluate() {
+func (e *FirstPrimeEvaluator) Evaluate() error {
+	e.Result = SequenceResult{}
+
 	if e.N < 0 {
-		panic(ErrInvalidInput)
+		return ErrInvalidInput
 	}
 
-	e.Result = SequenceResult{}
 	for v := int64(2); len(e.Result) < int(e.N); v++ {
 		if e.isPrime(v) {
 			e.Result = append(e.Result, v)
@@ -24,6 +25,7 @@ func (e *FirstPrimeEvaluator) Evaluate() {
 	}
 
 	fmt.Fprintf(e.ResultWriter, "Result: %s\n", FormatSequenceResult(e.Result))
+	return nil
 }
 
 func (e *FirstPrimeEvaluator) isPrime(v int64) bool {

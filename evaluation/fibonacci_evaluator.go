@@ -11,11 +11,11 @@ type FirstFibonacciEvaluator struct {
 	ResultWriter io.Writer
 }
 
-func (e *FirstFibonacciEvaluator) Evaluate() {
+func (e *FirstFibonacciEvaluator) Evaluate() error {
 	e.Result = []int64{}
 
 	if e.N < 0 {
-		panic(ErrInvalidInput)
+		return ErrInvalidInput
 	}
 
 	if e.N >= 1 {
@@ -30,4 +30,5 @@ func (e *FirstFibonacciEvaluator) Evaluate() {
 	}
 
 	fmt.Fprintf(e.ResultWriter, "Result: %v\n", FormatSequenceResult(e.Result))
+	return nil
 }
