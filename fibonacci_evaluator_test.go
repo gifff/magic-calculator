@@ -21,10 +21,16 @@ func TestFibonacciEvaluator(t *testing.T) {
 			expectedWrittenResult: "Result: \n",
 		},
 		{
-			name:                  "n=1 result should be 0",
+			name:                  "n=1 result should be '0'",
 			n:                     1,
 			expectedResult:        SequenceResult{0},
 			expectedWrittenResult: "Result: 0\n",
+		},
+		{
+			name:                  "n=2 result should be '0, 1'",
+			n:                     2,
+			expectedResult:        SequenceResult{0, 1},
+			expectedWrittenResult: "Result: 0, 1\n",
 		},
 	}
 
