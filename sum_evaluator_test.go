@@ -6,37 +6,50 @@ import (
 )
 
 func TestSumEvaluator(t *testing.T) {
-	t.Run("x=0 and y=0 result should be 0", func(t *testing.T) {
-		sb := &strings.Builder{}
-		se := &SumEvaluator{X: 0, Y: 0, ResultWriter: sb}
-		var evaluator Evaluator = se
-		evaluator.Evaluate()
 
-		expectedResult := SingleResult(0)
-		if se.Result != expectedResult {
-			t.Errorf("Expected: %d. Got: %d", expectedResult, se.Result)
-		}
+	testCases := []struct {
+		name                  string
+		x, y                  int64
+		expectedResult        SingleResult
+		expectedWrittenResult string
+	}{
+		{
+			name:                  "x=0 and y=0 result should be 0",
+			x:                     0,
+			y:                     0,
+			expectedResult:        SingleResult(0),
+			expectedWrittenResult: "Result: 0\n",
+		},
+		{
+			name:                  "x=2 and y=0 result should be 2",
+			x:                     2,
+			y:                     0,
+			expectedResult:        SingleResult(2),
+			expectedWrittenResult: "Result: 2\n",
+		},
+		{
+			name:                  "x=2 and y=3 result should be 5",
+			x:                     2,
+			y:                     3,
+			expectedResult:        SingleResult(5),
+			expectedWrittenResult: "Result: 5\n",
+		},
+	}
 
-		expectedWrittenResult := "Result: 0\n"
-		if gotWrittenResult := sb.String(); gotWrittenResult != expectedWrittenResult {
-			t.Errorf("Expected: %q. Got: %q", expectedWrittenResult, gotWrittenResult)
-		}
-	})
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			sb := &strings.Builder{}
+			se := &SumEvaluator{X: tc.x, Y: tc.y, ResultWriter: sb}
+			var evaluator Evaluator = se
+			evaluator.Evaluate()
 
-	t.Run("x=2 and y=0 result should be 2", func(t *testing.T) {
-		sb := &strings.Builder{}
-		se := &SumEvaluator{X: 2, Y: 0, ResultWriter: sb}
-		var evaluator Evaluator = se
-		evaluator.Evaluate()
+			if se.Result != tc.expectedResult {
+				t.Errorf("Expected: %d. Got: %d", tc.expectedResult, se.Result)
+			}
 
-		expectedResult := SingleResult(2)
-		if se.Result != expectedResult {
-			t.Errorf("Expected: %d. Got: %d", expectedResult, se.Result)
-		}
-
-		expectedWrittenResult := "Result: 2\n"
-		if gotWrittenResult := sb.String(); gotWrittenResult != expectedWrittenResult {
-			t.Errorf("Expected: %q. Got: %q", expectedWrittenResult, gotWrittenResult)
-		}
-	})
+			if gotWrittenResult := sb.String(); gotWrittenResult != tc.expectedWrittenResult {
+				t.Errorf("Expected: %q. Got: %q", tc.expectedWrittenResult, gotWrittenResult)
+			}
+		})
+	}
 }
