@@ -13,5 +13,9 @@ type FirstFibonacciEvaluator struct {
 
 func (e *FirstFibonacciEvaluator) Evaluate() {
 	e.Result = []int64{}
-	fmt.Fprintf(e.ResultWriter, "Result: \n")
+	if e.N == 1 {
+		e.Result = append(e.Result, 0)
+	}
+
+	fmt.Fprintf(e.ResultWriter, "Result: %v\n", FormatSequenceResult(e.Result))
 }
