@@ -12,5 +12,6 @@ type MultiplyEvaluator struct {
 }
 
 func (e *MultiplyEvaluator) Evaluate() {
-	fmt.Fprintf(e.ResultWriter, "Result: %d\n", 0)
+	e.Result = SingleResult(e.X)
+	fmt.Fprintf(e.ResultWriter, "Result: %d\n", e.Result)
 }
