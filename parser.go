@@ -8,7 +8,7 @@ func checkRequiredArgs(cmd string, args []string) bool {
 		return false
 	}
 
-	return command.RequiredArgs >= len(args)
+	return command.RequiredArgs <= len(args)
 }
 
 func parseInput(cmd string, args []string) ([]int64, error) {
