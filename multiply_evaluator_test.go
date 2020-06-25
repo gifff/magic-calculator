@@ -27,6 +27,13 @@ func TestMultiplyEvaluator(t *testing.T) {
 			expectedResult:        SingleResult(1),
 			expectedWrittenResult: "Result: 1\n",
 		},
+		{
+			name:                  "x=1 and y=-5 result should be -5",
+			x:                     1,
+			y:                     -5,
+			expectedResult:        SingleResult(-5),
+			expectedWrittenResult: "Result: -5\n",
+		},
 	}
 
 	for _, tc := range testCases {
