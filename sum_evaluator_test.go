@@ -3,6 +3,8 @@ package main
 import (
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSumEvaluator(t *testing.T) {
@@ -43,13 +45,8 @@ func TestSumEvaluator(t *testing.T) {
 			var evaluator Evaluator = se
 			evaluator.Evaluate()
 
-			if se.Result != tc.expectedResult {
-				t.Errorf("Expected: %d. Got: %d", tc.expectedResult, se.Result)
-			}
-
-			if gotWrittenResult := sb.String(); gotWrittenResult != tc.expectedWrittenResult {
-				t.Errorf("Expected: %q. Got: %q", tc.expectedWrittenResult, gotWrittenResult)
-			}
+			assert.Equal(t, tc.expectedResult, se.Result)
+			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})
 	}
 }

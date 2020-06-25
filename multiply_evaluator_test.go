@@ -3,6 +3,8 @@ package main
 import (
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMultiplyEvaluator(t *testing.T) {
@@ -43,13 +45,8 @@ func TestMultiplyEvaluator(t *testing.T) {
 			var evaluator Evaluator = me
 			evaluator.Evaluate()
 
-			if me.Result != tc.expectedResult {
-				t.Errorf("Expected: %d. Got: %d", tc.expectedResult, me.Result)
-			}
-
-			if gotWrittenResult := sb.String(); gotWrittenResult != tc.expectedWrittenResult {
-				t.Errorf("Expected: %q. Got: %q", tc.expectedWrittenResult, gotWrittenResult)
-			}
+			assert.Equal(t, tc.expectedResult, me.Result)
+			assert.Equal(t, tc.expectedWrittenResult, sb.String())
 		})
 	}
 }
