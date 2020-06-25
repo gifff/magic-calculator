@@ -26,6 +26,12 @@ func TestFirstPrimeEvaluator(t *testing.T) {
 			expectedResult:        SequenceResult{2},
 			expectedWrittenResult: "Result: 2\n",
 		},
+		{
+			name:                  "n=10 result should be '2, 3, 5, 7, 11, 13, 17, 19, 23, 29'",
+			n:                     10,
+			expectedResult:        SequenceResult{2, 3, 5, 7, 11, 13, 17, 19, 23, 29},
+			expectedWrittenResult: "Result: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29\n",
+		},
 	}
 
 	for _, tc := range testCases {
