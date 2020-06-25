@@ -7,14 +7,9 @@ import (
 	"strconv"
 )
 
-func printUsage() {
-	executableName := os.Args[0]
-	fmt.Printf("For usage information: %s help\n", filepath.Base(executableName))
-}
-
 func main() {
 	args := os.Args[1:]
-	if len(args) < 3 {
+	if len(args) < 1 {
 		printUsage()
 		return
 	}
@@ -25,6 +20,9 @@ func main() {
 	switch cmd {
 	case "sum", "multiply":
 		requiredArgs = 2
+	case "help":
+		printHelp()
+		return
 	default:
 		printUsage()
 		return
@@ -62,4 +60,17 @@ func main() {
 	}
 
 	evaluator.Evaluate()
+}
+
+func printUsage() {
+	executableName := os.Args[0]
+	fmt.Printf("For usage information: %s help\n", filepath.Base(executableName))
+}
+
+func printHelp() {
+	executableName := filepath.Base(os.Args[0])
+	fmt.Printf("Usage: %s <command> <arg1> <arg2> ... <argN>\n\n", executableName)
+	fmt.Printf("Available commands:\n")
+	fmt.Printf("\tsum\t\tSum of <arg1> and <arg2>\n")
+	fmt.Printf("\tmultiply\tMultiply <arg1> and <arg2>\n")
 }
