@@ -20,21 +20,21 @@ func TestSumEvaluator(t *testing.T) {
 			x:                     0,
 			y:                     0,
 			expectedResult:        SingleResult(0),
-			expectedWrittenResult: "Result: 0\n",
+			expectedWrittenResult: "0\n",
 		},
 		{
 			name:                  "x=2 and y=0 result should be 2",
 			x:                     2,
 			y:                     0,
 			expectedResult:        SingleResult(2),
-			expectedWrittenResult: "Result: 2\n",
+			expectedWrittenResult: "2\n",
 		},
 		{
 			name:                  "x=2 and y=3 result should be 5",
 			x:                     2,
 			y:                     3,
 			expectedResult:        SingleResult(5),
-			expectedWrittenResult: "Result: 5\n",
+			expectedWrittenResult: "5\n",
 		},
 	}
 

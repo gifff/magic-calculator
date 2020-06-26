@@ -20,21 +20,21 @@ func TestMultiplyEvaluator(t *testing.T) {
 			x:                     0,
 			y:                     0,
 			expectedResult:        SingleResult(0),
-			expectedWrittenResult: "Result: 0\n",
+			expectedWrittenResult: "0\n",
 		},
 		{
 			name:                  "x=1 and y=1 result should be 1",
 			x:                     1,
 			y:                     1,
 			expectedResult:        SingleResult(1),
-			expectedWrittenResult: "Result: 1\n",
+			expectedWrittenResult: "1\n",
 		},
 		{
 			name:                  "x=1 and y=-5 result should be -5",
 			x:                     1,
 			y:                     -5,
 			expectedResult:        SingleResult(-5),
-			expectedWrittenResult: "Result: -5\n",
+			expectedWrittenResult: "-5\n",
 		},
 	}
 

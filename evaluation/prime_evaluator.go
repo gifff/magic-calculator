@@ -24,7 +24,7 @@ func (e *FirstPrimeEvaluator) Evaluate() error {
 		}
 	}
 
-	fmt.Fprintf(e.ResultWriter, "Result: %s\n", FormatSequenceResult(e.Result))
+	fmt.Fprintf(e.ResultWriter, "%s\n", FormatSequenceResult(e.Result))
 	return nil
 }
 

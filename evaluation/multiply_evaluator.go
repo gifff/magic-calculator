@@ -13,6 +13,6 @@ type MultiplyEvaluator struct {
 
 func (e *MultiplyEvaluator) Evaluate() error {
 	e.Result = SingleResult(e.X * e.Y)
-	fmt.Fprintf(e.ResultWriter, "Result: %d\n", e.Result)
+	fmt.Fprintf(e.ResultWriter, "%d\n", e.Result)
 	return nil
 }

@@ -29,6 +29,6 @@ func (e *FirstFibonacciEvaluator) Evaluate() error {
 		e.Result = append(e.Result, e.Result[i-1]+e.Result[i-2])
 	}
 
-	fmt.Fprintf(e.ResultWriter, "Result: %v\n", FormatSequenceResult(e.Result))
+	fmt.Fprintf(e.ResultWriter, "%v\n", FormatSequenceResult(e.Result))
 	return nil
 }
