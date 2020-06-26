@@ -14,7 +14,10 @@ func main() {
 	args = args[1:]
 
 	if cmd == "help" {
-		printHelp()
+		printHelp(false)
+		return
+	} else if cmd == "interactive" {
+		runInteractive()
 		return
 	}
 
@@ -23,14 +26,18 @@ func main() {
 		return
 	}
 
-	input, err := parseInput(cmd, args)
+	err := evaluate(cmd, args)
 	if err != nil {
 		printError(err)
+	}
+}
+
+func evaluate(cmd string, args []string) error {
+	input, err := parseInput(cmd, args)
+	if err != nil {
+		return err
 	}
 
 	evaluator := selectEvaluator(cmd, input, os.Stdout)
-	err = evaluator.Evaluate()
-	if err != nil {
-		printError(err)
-	}
+	return evaluator.Evaluate()
 }

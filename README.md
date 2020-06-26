@@ -69,12 +69,14 @@ Result: -5
 ### Available commands
 
 - `sum <arg1> <arg2>`
-  > Sum <arg1> with <arg2>
+  > Sum arg1 with arg2
 - `multiply <arg1> <arg2>`
-  > Multiply <arg1> with <arg2>
+  > Multiply arg1 with arg2
 - `nfib <N>`
   > Print the first N Fibonacci numbers
 - `nprime <N>`
   > Print the first N prime numbers
 - `help`
   > Print usage and available commands
+- `interactive`
+  > Run the program in interactive mode
